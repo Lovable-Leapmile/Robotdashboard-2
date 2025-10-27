@@ -83,42 +83,42 @@ const Home = () => {
           Robot
         </span>
         <span 
-          className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium hover:bg-white hover:shadow-md relative group" 
+          className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium hover:shadow-md relative group" 
           style={{ color: '#555' }}
         >
           Racks
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full"></span>
         </span>
         <span 
-          className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium hover:bg-white hover:shadow-md relative group" 
+          className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium hover:shadow-md relative group" 
           style={{ color: '#555' }}
         >
           Trays
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full"></span>
         </span>
         <span 
-          className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium hover:bg-white hover:shadow-md relative group" 
+          className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium hover:shadow-md relative group" 
           style={{ color: '#555' }}
         >
           Slots
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full"></span>
         </span>
         <span 
-          className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium hover:bg-white hover:shadow-md relative group" 
+          className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium hover:shadow-md relative group" 
           style={{ color: '#555' }}
         >
           Station
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full"></span>
         </span>
         <span 
-          className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium hover:bg-white hover:shadow-md relative group" 
+          className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium hover:shadow-md relative group" 
           style={{ color: '#555' }}
         >
           Extremes
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full"></span>
         </span>
         <span 
-          className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium hover:bg-white hover:shadow-md relative group" 
+          className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium hover:shadow-md relative group" 
           style={{ color: '#555' }}
         >
           APK Link
