@@ -40,7 +40,7 @@ const LoginForm = () => {
               className="w-24 h-24 object-contain relative z-10 hover:scale-110 transition-transform duration-300"
             />
           </div>
-          <h1 className="text-4xl font-bold" style={{ color: '#8E77C3' }}>
+          <h1 className="text-2xl font-bold" style={{ color: '#8E77C3' }}>
             Login
           </h1>
         </div>
