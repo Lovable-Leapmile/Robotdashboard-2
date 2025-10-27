@@ -49,19 +49,19 @@ const Home = () => {
         <div className="flex items-center gap-[10px]">
           <div 
             className="rounded-full flex items-center justify-center cursor-pointer hover:opacity-80"
-            style={{ backgroundColor: 'rgba(53, 28, 117, 0.20)', padding: '15px' }}
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.20)', padding: '12px' }}
           >
             <ScrollText className="text-white" size={20} />
           </div>
           <div 
             className="rounded-full flex items-center justify-center cursor-pointer hover:opacity-80"
-            style={{ backgroundColor: 'rgba(53, 28, 117, 0.20)', padding: '15px' }}
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.20)', padding: '12px' }}
           >
             <Activity className="text-white" size={20} />
           </div>
           <div 
             className="rounded-full flex items-center justify-center cursor-pointer hover:opacity-80"
-            style={{ backgroundColor: 'rgba(53, 28, 117, 0.20)', padding: '15px' }}
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.20)', padding: '12px' }}
             onClick={handleLogout}
           >
             <LogOut className="text-white" size={20} />
