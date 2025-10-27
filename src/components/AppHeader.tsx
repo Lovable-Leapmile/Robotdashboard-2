@@ -19,7 +19,7 @@ const AppHeader = ({ selectedTab }: AppHeaderProps) => {
     const routes: { [key: string]: string } = {
       "Robot": "/home",
       "Racks": "/racks",
-      "Trays": "/home",
+      "Trays": "/trays",
       "Slots": "/home",
       "Station": "/home",
       "Extremes": "/home",
