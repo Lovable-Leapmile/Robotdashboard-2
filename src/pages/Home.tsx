@@ -39,32 +39,32 @@ const Home = () => {
             <img src={whiteLogo} alt="Logo" style={{ width: '75px' }} />
           </div>
           <nav className="flex items-center gap-[10px]">
-            <span className="text-white text-sm cursor-pointer hover:opacity-80">Configuration</span>
-            <span className="text-white text-sm cursor-pointer hover:opacity-80">Tasks</span>
-            <span className="text-white text-sm cursor-pointer hover:opacity-80">Camera</span>
-            <span className="text-white text-sm cursor-pointer hover:opacity-80">Reports</span>
+            <span className="text-white text-base cursor-pointer hover:opacity-80">Configuration</span>
+            <span className="text-white text-base cursor-pointer hover:opacity-80">Tasks</span>
+            <span className="text-white text-base cursor-pointer hover:opacity-80">Camera</span>
+            <span className="text-white text-base cursor-pointer hover:opacity-80">Reports</span>
           </nav>
         </div>
         
         <div className="flex items-center gap-[10px]">
           <div 
             className="rounded-full flex items-center justify-center cursor-pointer hover:opacity-80"
-            style={{ backgroundColor: 'rgba(255, 255, 255, 0.20)', padding: '12px' }}
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.20)', width: '40px', height: '40px' }}
           >
-            <ScrollText className="text-white" size={20} />
+            <ScrollText className="text-white" size={18} />
           </div>
           <div 
             className="rounded-full flex items-center justify-center cursor-pointer hover:opacity-80"
-            style={{ backgroundColor: 'rgba(255, 255, 255, 0.20)', padding: '12px' }}
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.20)', width: '40px', height: '40px' }}
           >
-            <Activity className="text-white" size={20} />
+            <Activity className="text-white" size={18} />
           </div>
           <div 
             className="rounded-full flex items-center justify-center cursor-pointer hover:opacity-80"
-            style={{ backgroundColor: 'rgba(255, 255, 255, 0.20)', padding: '12px' }}
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.20)', width: '40px', height: '40px' }}
             onClick={handleLogout}
           >
-            <LogOut className="text-white" size={20} />
+            <LogOut className="text-white" size={18} />
           </div>
         </div>
       </header>
