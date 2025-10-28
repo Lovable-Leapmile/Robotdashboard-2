@@ -189,21 +189,21 @@ const Racks = () => {
         </div>
 
         {selectedRack !== null && (
-          <div className="flex justify-center gap-12 mt-8">
+          <div className="flex justify-center gap-24 mt-8">
             {/* Row 1 Column */}
             <div className="flex flex-col items-center">
               <div className="text-xl font-semibold mb-6" style={{ color: '#351c75' }}>
                 Row 1
               </div>
-              <div className="flex flex-col gap-2.5">
-                {/* Depth 1 - Single Column */}
-                <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col" style={{ gap: '10px' }}>
+                {/* Depth 1 - Horizontal Row */}
+                <div className="flex gap-2.5">
                   {row1Depth1Slots.map((slot, idx) => (
                     <SlotBox key={`r1d1-${idx}`} slot={slot} />
                   ))}
                 </div>
-                {/* Depth 0 - Single Column */}
-                <div className="flex flex-col gap-2.5">
+                {/* Depth 0 - Horizontal Row */}
+                <div className="flex gap-2.5">
                   {row1Depth0Slots.map((slot, idx) => (
                     <SlotBox key={`r1d0-${idx}`} slot={slot} />
                   ))}
@@ -216,15 +216,15 @@ const Racks = () => {
               <div className="text-xl font-semibold mb-6" style={{ color: '#351c75' }}>
                 Row 0
               </div>
-              <div className="flex flex-col gap-2.5">
-                {/* Depth 1 - Single Column */}
-                <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col" style={{ gap: '10px' }}>
+                {/* Depth 1 - Horizontal Row */}
+                <div className="flex gap-2.5">
                   {row0Depth1Slots.map((slot, idx) => (
                     <SlotBox key={`r0d1-${idx}`} slot={slot} />
                   ))}
                 </div>
-                {/* Depth 0 - Single Column */}
-                <div className="flex flex-col gap-2.5">
+                {/* Depth 0 - Horizontal Row */}
+                <div className="flex gap-2.5">
                   {row0Depth0Slots.map((slot, idx) => (
                     <SlotBox key={`r0d0-${idx}`} slot={slot} />
                   ))}
