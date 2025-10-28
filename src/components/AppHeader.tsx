@@ -25,9 +25,10 @@ interface AppHeaderProps {
   activeTaskTab?: string;
   isMonitorPage?: boolean;
   isCameraPage?: boolean;
+  isReportsPage?: boolean;
 }
 
-const AppHeader = ({ selectedTab, isTasksPage, activeTaskTab, isMonitorPage, isCameraPage }: AppHeaderProps) => {
+const AppHeader = ({ selectedTab, isTasksPage, activeTaskTab, isMonitorPage, isCameraPage, isReportsPage }: AppHeaderProps) => {
   const navigate = useNavigate();
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
 
@@ -96,7 +97,13 @@ const AppHeader = ({ selectedTab, isTasksPage, activeTaskTab, isMonitorPage, isC
             >
               Camera
             </span>
-            <span className="text-base cursor-pointer hover:opacity-80" style={{ color: '#80ffffff' }}>Reports</span>
+            <span 
+              className={`text-base cursor-pointer hover:opacity-80 ${isReportsPage ? 'font-semibold' : ''}`} 
+              style={{ color: isReportsPage ? 'white' : '#80ffffff' }}
+              onClick={() => navigate("/reports")}
+            >
+              Reports
+            </span>
           </nav>
         </div>
         
@@ -154,7 +161,7 @@ const AppHeader = ({ selectedTab, isTasksPage, activeTaskTab, isMonitorPage, isC
         </TooltipProvider>
       </header>
 
-      {selectedTab && !isTasksPage && !isCameraPage && (
+      {selectedTab && !isTasksPage && !isCameraPage && !isReportsPage && (
         <nav 
           className="flex items-center px-6 gap-[8px] border-b border-gray-200"
           style={{ backgroundColor: '#eeeeee', height: '55px' }}
