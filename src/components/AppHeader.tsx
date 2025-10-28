@@ -29,7 +29,7 @@ const AppHeader = ({ selectedTab }: AppHeaderProps) => {
       "Slots": "/slots",
       "Station": "/station",
       "Extremes": "/extremes",
-      "APK Link": "/home"
+      "APK Link": "/apk-link"
     };
     if (routes[tab]) {
       navigate(routes[tab]);
