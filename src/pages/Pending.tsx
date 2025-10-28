@@ -132,11 +132,20 @@ const Pending = () => {
         }
       });
 
+      const data = await response.json();
+
+      // Handle "no records found" as a normal case, not an error
+      if (response.status === 404 && data.message === "no records found") {
+        console.log("No pending tasks found");
+        setTotalCount(0);
+        setRowData([]);
+        return;
+      }
+
       if (!response.ok) {
         throw new Error("Failed to fetch tasks data");
       }
 
-      const data = await response.json();
       console.log("Fetched pending tasks:", data?.records?.length);
       setTotalCount(data.count || 0);
       const mapped = (data.records || []).map((r: any) => ({
