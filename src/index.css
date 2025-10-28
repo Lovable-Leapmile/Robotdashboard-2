@@ -143,21 +143,15 @@ All colors MUST be HSL.
 }
 
 .ag-theme-quartz .ag-cell {
-  padding: 0 12px !important;
+  padding: 12px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  height: 50px !important;
-  min-height: 50px !important;
-  max-height: 50px !important;
   line-height: normal !important;
 }
 
 .ag-theme-quartz .ag-row {
   border-bottom: 1px solid hsl(var(--border));
-  height: 50px !important;
-  min-height: 50px !important;
-  max-height: 50px !important;
 }
 
 .ag-theme-quartz .ag-cell-wrapper {
