@@ -146,9 +146,11 @@ All colors MUST be HSL.
   padding: 0 12px !important;
   display: flex !important;
   align-items: center !important;
+  justify-content: flex-start !important;
   height: 50px !important;
   min-height: 50px !important;
   max-height: 50px !important;
+  line-height: 50px !important;
 }
 
 .ag-theme-quartz .ag-row {
@@ -156,6 +158,12 @@ All colors MUST be HSL.
   height: 50px !important;
   min-height: 50px !important;
   max-height: 50px !important;
+}
+
+.ag-theme-quartz .ag-cell-wrapper {
+  height: 100%;
+  display: flex !important;
+  align-items: center !important;
 }
 
 .ag-theme-quartz .ag-header {
