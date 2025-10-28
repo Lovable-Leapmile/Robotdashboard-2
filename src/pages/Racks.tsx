@@ -154,7 +154,7 @@ const Racks = () => {
           {slot.slot_id}
         </div>
         {!isInactive && (
-          <div className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-0.5 pb-1">
+          <div className="absolute bottom-0 left-0 right-0 flex flex-col items-center pb-1" style={{ gap: '1px' }}>
             {slot.tags?.includes("station") && (
               <img src={stationImg} alt="Station" style={{ width: '146px', height: '10px' }} />
             )}
