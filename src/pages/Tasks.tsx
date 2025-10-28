@@ -1,26 +1,15 @@
-import { useState } from "react";
-import AppHeader from "@/components/AppHeader";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Tasks = () => {
-  const [activeTab, setActiveTab] = useState("Pending");
+  const navigate = useNavigate();
 
-  return (
-    <div className="min-h-screen flex flex-col">
-      <AppHeader 
-        selectedTab="" 
-        isTasksPage={true}
-        activeTaskTab={activeTab}
-        onTaskTabChange={setActiveTab}
-      />
+  useEffect(() => {
+    // Redirect to Pending page by default
+    navigate("/pending");
+  }, [navigate]);
 
-      <main className="flex-1 p-6">
-        <div className="text-gray-700">
-          <h2 className="text-xl font-semibold mb-4">{activeTab}</h2>
-          {/* Content for each tab will go here */}
-        </div>
-      </main>
-    </div>
-  );
+  return null;
 };
 
 export default Tasks;

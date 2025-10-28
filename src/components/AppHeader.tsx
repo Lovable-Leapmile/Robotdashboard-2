@@ -23,11 +23,10 @@ interface AppHeaderProps {
   selectedTab: string;
   isTasksPage?: boolean;
   activeTaskTab?: string;
-  onTaskTabChange?: (tab: string) => void;
   isMonitorPage?: boolean;
 }
 
-const AppHeader = ({ selectedTab, isTasksPage, activeTaskTab, onTaskTabChange, isMonitorPage }: AppHeaderProps) => {
+const AppHeader = ({ selectedTab, isTasksPage, activeTaskTab, isMonitorPage }: AppHeaderProps) => {
   const navigate = useNavigate();
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
 
@@ -212,7 +211,7 @@ const AppHeader = ({ selectedTab, isTasksPage, activeTaskTab, onTaskTabChange, i
       </nav>
       )}
 
-      {isTasksPage && onTaskTabChange && (
+      {isTasksPage && (
         <nav 
           className="flex items-center px-6 gap-[8px] border-b border-gray-200"
           style={{ backgroundColor: '#eeeeee', height: '55px' }}
@@ -222,7 +221,10 @@ const AppHeader = ({ selectedTab, isTasksPage, activeTaskTab, onTaskTabChange, i
               key={tab}
               className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium relative group"
               style={{ color: '#555' }}
-              onClick={() => onTaskTabChange(tab)}
+              onClick={() => {
+                if (tab === "Pending") navigate("/pending");
+                // Add routes for other tabs when they are created
+              }}
             >
               {tab}
               <span

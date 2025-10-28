@@ -13,6 +13,7 @@ import Extremes from "./pages/Extremes";
 import ApkLink from "./pages/ApkLink";
 import Monitor from "./pages/Monitor";
 import Tasks from "./pages/Tasks";
+import Pending from "./pages/Pending";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/apk-link" element={<ApkLink />} />
           <Route path="/monitor" element={<Monitor />} />
           <Route path="/tasks" element={<Tasks />} />
+          <Route path="/pending" element={<Pending />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
