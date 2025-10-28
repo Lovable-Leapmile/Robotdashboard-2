@@ -122,10 +122,8 @@ All colors MUST be HSL.
 }
 
 .ag-theme-quartz .ag-header-cell {
-  padding: 0 12px !important;
-  line-height: 50px !important;
+  padding: 12px !important;
   color: white !important;
-  height: 50px !important;
   display: flex !important;
   align-items: center !important;
 }
@@ -139,16 +137,13 @@ All colors MUST be HSL.
 }
 
 .ag-theme-quartz .ag-cell {
-  padding: 0 12px !important;
-  line-height: 50px !important;
+  padding: 12px !important;
   display: flex !important;
   align-items: center !important;
-  height: 50px !important;
 }
 
 .ag-theme-quartz .ag-row {
   border-bottom: 1px solid hsl(var(--border));
-  height: 50px !important;
 }
 
 .ag-theme-quartz .ag-header {
@@ -157,7 +152,6 @@ All colors MUST be HSL.
   top: 0 !important;
   z-index: 10 !important;
   background-color: #8e77c3 !important;
-  height: 50px !important;
 }
 
 .ag-theme-quartz .ag-paging-panel .ag-icon,
