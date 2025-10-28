@@ -206,7 +206,7 @@ const Logs = () => {
       
       <main className="p-6">
         {!loading && rowData.length === 0 ? (
-          <div className="flex flex-col items-center justify-center" style={{ minHeight: 'calc(100vh - 180px)' }}>
+          <div className="flex flex-col items-center justify-center" style={{ minHeight: 'calc(100vh - 120px)' }}>
             <img 
               src={noRecordsImage} 
               alt="No Record found" 
@@ -214,7 +214,7 @@ const Logs = () => {
             />
           </div>
         ) : (
-          <div className="ag-theme-quartz w-full" style={{ height: 'calc(100vh - 180px)' }}>
+          <div className="ag-theme-quartz w-full" style={{ height: 'calc(100vh - 120px)' }}>
             <AgGridReact
               rowData={rowData}
               columnDefs={columnDefs}
