@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Racks from "./pages/Racks";
 import Trays from "./pages/Trays";
 import Slots from "./pages/Slots";
+import Station from "./pages/Station";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/racks" element={<Racks />} />
           <Route path="/trays" element={<Trays />} />
           <Route path="/slots" element={<Slots />} />
+          <Route path="/station" element={<Station />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

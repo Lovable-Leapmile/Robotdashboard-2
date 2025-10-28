@@ -21,7 +21,7 @@ const AppHeader = ({ selectedTab }: AppHeaderProps) => {
       "Racks": "/racks",
       "Trays": "/trays",
       "Slots": "/slots",
-      "Station": "/home",
+      "Station": "/station",
       "Extremes": "/home",
       "APK Link": "/home"
     };
