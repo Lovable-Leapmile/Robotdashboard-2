@@ -46,7 +46,8 @@ const SlotDetailsPanel = ({ slotDetails, isVisible }: SlotDetailsPanelProps) => 
         className="animate-slide-in-right"
         style={{ 
           width: '280px',
-          marginLeft: '30px'
+          marginLeft: '30px',
+          borderRadius: '10px'
         }}
       >
         <div className="text-xl font-semibold mb-6" style={{ color: '#351c75' }}>
@@ -161,10 +162,7 @@ const SlotDetailsPanel = ({ slotDetails, isVisible }: SlotDetailsPanelProps) => 
 
           {/* Additional Information */}
           <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Details</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="space-y-3 pt-6">
               <div className="flex justify-between items-center">
                 <span className="text-sm text-muted-foreground">Status</span>
                 <span className="text-sm font-medium capitalize">{slotDetails.slot_status}</span>
