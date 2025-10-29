@@ -45,7 +45,7 @@ const SlotDetailsPanel = ({ slotDetails, isVisible }: SlotDetailsPanelProps) => 
       <div 
         className="animate-slide-in-right"
         style={{ 
-          width: '320px',
+          width: '280px',
           marginLeft: '30px'
         }}
       >
