@@ -142,29 +142,39 @@ const SlotDetailsPanel = ({ slotDetails, isVisible }: SlotDetailsPanelProps) => 
 
       {/* QR Code Dialog */}
       <Dialog open={qrDialogOpen} onOpenChange={setQrDialogOpen}>
-        <DialogContent className="p-0" style={{ width: '275px', maxWidth: '275px' }}>
-          <DialogHeader>
-            <DialogTitle className="text-center text-lg font-semibold" style={{ color: '#351c75' }}>
+        <DialogContent 
+          className="p-0 gap-0" 
+          style={{ 
+            width: '275px', 
+            maxWidth: '275px',
+            height: '335px',
+            background: 'linear-gradient(135deg, #f3f0ff 0%, #ffffff 100%)',
+            border: '2px solid #351c75'
+          }}
+        >
+          {/* Row 1: Title with close button */}
+          <div className="flex items-center justify-center relative px-6 pt-6 pb-4">
+            <DialogTitle className="text-lg font-semibold text-center" style={{ color: '#351c75' }}>
               {qrTitle}
             </DialogTitle>
-          </DialogHeader>
-          <div 
-            className="flex flex-col items-center justify-center rounded-lg p-6" 
-            style={{ 
-              background: 'linear-gradient(135deg, #f3f0ff 0%, #ffffff 100%)',
-              border: '2px solid #351c75'
-            }}
-          >
-            <div className="bg-white p-4 rounded-lg shadow-lg">
+          </div>
+
+          {/* Row 2: QR Code */}
+          <div className="flex items-center justify-center py-4">
+            <div className="bg-white p-3 rounded-lg shadow-lg">
               <QRCodeSVG 
                 value={qrValue} 
-                size={200} 
+                size={160} 
                 level="H"
                 fgColor="#351c75"
                 bgColor="#ffffff"
               />
             </div>
-            <div className="mt-4 text-center text-sm font-medium" style={{ color: '#351c75' }}>
+          </div>
+
+          {/* Row 3: Value Text */}
+          <div className="flex items-center justify-center px-6 pb-6 pt-2">
+            <div className="text-center text-sm font-medium" style={{ color: '#351c75' }}>
               {qrValue}
             </div>
           </div>
