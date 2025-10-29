@@ -93,8 +93,9 @@ const AppHeader = ({ selectedTab, isTasksPage, activeTaskTab, isMonitorPage, isC
       >
         <div className="flex items-center gap-[10px]">
           <div 
-            className="rounded-full flex items-center justify-center"
+            className="rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
             style={{ backgroundColor: 'rgba(53, 28, 117, 0.20)', padding: '15px' }}
+            onClick={() => navigate("/home")}
           >
             <img src={whiteLogo} alt="Logo" style={{ width: '75px' }} />
           </div>
