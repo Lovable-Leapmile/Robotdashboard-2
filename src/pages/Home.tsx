@@ -54,7 +54,7 @@ const Home = () => {
       <AppHeader selectedTab="Robot" />
       
       <main style={{ marginLeft: '15px', paddingTop: '20px', paddingBottom: '20px' }}>
-        <div className="flex" style={{ gap: '40px' }}>
+        <div className="flex" style={{ gap: '100px' }}>
           {/* Row 0 */}
           <div className="flex flex-col items-center">
             <div className="text-xl font-semibold mb-4" style={{ color: '#351c75' }}>
