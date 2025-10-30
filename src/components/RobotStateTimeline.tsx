@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ResponsiveContainer, ScatterChart, Scatter, XAxis, YAxis, Cell, Tooltip } from "recharts";
 
 interface RobotState {
-  robot_status: string;
+  status: string;
   created_at: string;
 }
 
@@ -44,7 +44,7 @@ export const RobotStateTimeline = () => {
           const minutes = date.getMinutes();
           const timeValue = hours + minutes / 60;
           
-          const statusName = record.robot_status.toLowerCase();
+          const statusName = record.status.toLowerCase();
           const statusIndex = STATUS_LABELS.indexOf(statusName);
           
           return {
