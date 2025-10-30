@@ -150,9 +150,9 @@ export const DashboardCards = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-2 gap-3 mt-[15px]">
+    <div className="grid grid-cols-2 grid-rows-2 gap-3 mt-[15px]">
       {/* Robot Information Card */}
-      <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
+      <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20 h-full flex flex-col">
         <CardHeader className="pb-3 border-b border-primary/20">
           <div className="flex items-center justify-between">
             <CardTitle className="text-base font-bold text-primary flex items-center gap-2">
@@ -161,7 +161,7 @@ export const DashboardCards = () => {
             </CardTitle>
           </div>
         </CardHeader>
-        <CardContent className="pt-4">
+        <CardContent className="pt-4 flex-1 flex flex-col justify-between">
           {robotInfo ? (
             <div className="space-y-3">
               <div className="bg-background/50 rounded-lg p-3 space-y-2">
@@ -199,7 +199,7 @@ export const DashboardCards = () => {
       </Card>
 
       {/* Slot Information Card */}
-      <Card className="bg-gradient-to-br from-blue-500/5 to-blue-500/10 border-blue-500/20">
+      <Card className="bg-gradient-to-br from-blue-500/5 to-blue-500/10 border-blue-500/20 h-full flex flex-col">
         <CardHeader className="pb-3 border-b border-blue-500/20">
           <div className="flex items-center justify-between">
             <CardTitle className="text-base font-bold text-blue-600 flex items-center gap-2">
@@ -208,7 +208,7 @@ export const DashboardCards = () => {
             </CardTitle>
           </div>
         </CardHeader>
-        <CardContent className="pt-4">
+        <CardContent className="pt-4 flex-1 flex flex-col justify-between">
           {slotInfo ? (
             <div className="space-y-3">
               <div className="flex items-center justify-center gap-4">
@@ -242,7 +242,7 @@ export const DashboardCards = () => {
       </Card>
 
       {/* Tray Information Card */}
-      <Card className="bg-gradient-to-br from-purple-500/5 to-purple-500/10 border-purple-500/20">
+      <Card className="bg-gradient-to-br from-purple-500/5 to-purple-500/10 border-purple-500/20 h-full flex flex-col">
         <CardHeader className="pb-3 border-b border-purple-500/20">
           <div className="flex items-center justify-between">
             <CardTitle className="text-base font-bold text-purple-600 flex items-center gap-2">
@@ -251,7 +251,7 @@ export const DashboardCards = () => {
             </CardTitle>
           </div>
         </CardHeader>
-        <CardContent className="pt-4">
+        <CardContent className="pt-4 flex-1 flex flex-col justify-between">
           {trayInfo ? (
             <div className="space-y-3">
               <div className="flex items-center justify-center gap-4">
@@ -285,7 +285,7 @@ export const DashboardCards = () => {
       </Card>
 
       {/* Robot Power Card */}
-      <Card className="bg-gradient-to-br from-amber-500/5 to-amber-500/10 border-amber-500/20">
+      <Card className="bg-gradient-to-br from-amber-500/5 to-amber-500/10 border-amber-500/20 h-full flex flex-col">
         <CardHeader className="pb-3 border-b border-amber-500/20">
           <div className="flex items-center justify-between">
             <CardTitle className="text-base font-bold text-amber-600 flex items-center gap-2">
@@ -294,7 +294,7 @@ export const DashboardCards = () => {
             </CardTitle>
           </div>
         </CardHeader>
-        <CardContent className="pt-4">
+        <CardContent className="pt-4 flex-1 flex flex-col justify-between">
           {powerInfo ? (
             <div className="space-y-2">
               <div className="grid grid-cols-2 gap-2">
