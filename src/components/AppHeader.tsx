@@ -281,16 +281,16 @@ const AppHeader = ({ selectedTab, isTasksPage, activeTaskTab, isMonitorPage, isC
           className="flex items-center px-6 gap-[8px] border-b border-gray-200"
           style={{ backgroundColor: '#eeeeee', height: '55px' }}
         >
-          {["Pending", "Tray Ready", "Inprogress", "Completed"].map((tab) => (
+          {["Completed", "Pending", "Tray Ready", "Inprogress"].map((tab) => (
             <span
               key={tab}
               className="text-sm cursor-pointer px-5 py-2 rounded-md transition-all font-medium relative group"
               style={{ color: '#555' }}
               onClick={() => {
+                if (tab === "Completed") navigate("/completed");
                 if (tab === "Pending") navigate("/pending");
                 if (tab === "Tray Ready") navigate("/tray-ready");
                 if (tab === "Inprogress") navigate("/inprogress");
-                if (tab === "Completed") navigate("/completed");
               }}
             >
               {tab}
