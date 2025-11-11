@@ -5,8 +5,8 @@ const Tasks = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Redirect to Pending page by default
-    navigate("/pending");
+    // Redirect to Completed page by default
+    navigate("/completed");
   }, [navigate]);
 
   return null;
