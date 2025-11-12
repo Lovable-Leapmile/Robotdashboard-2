@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AppHeader from "@/components/AppHeader";
 import { AgGridReact } from "ag-grid-react";
-import { ColDef } from "ag-grid-community";
+import { ColDef, ModuleRegistry, AllCommunityModule } from "ag-grid-community";
 import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
+import "ag-grid-community/styles/ag-theme-quartz.css";
 import { Play, Download, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,6 +13,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 interface CameraEvent {
   task_id: string;
@@ -102,7 +104,6 @@ const CameraTaskDetails = () => {
     },
     {
       headerName: "View",
-      field: "view",
       width: 100,
       cellRenderer: (params: any) => (
         <button
@@ -115,7 +116,6 @@ const CameraTaskDetails = () => {
     },
     {
       headerName: "Download",
-      field: "download",
       width: 120,
       cellRenderer: (params: any) => (
         <button
@@ -157,7 +157,7 @@ const CameraTaskDetails = () => {
               No camera events found for this task
             </div>
           ) : (
-            <div className="ag-theme-alpine w-full" style={{ height: "600px" }}>
+            <div className="ag-theme-quartz w-full" style={{ height: 'calc(100vh - 180px)' }}>
               <AgGridReact
                 rowData={events}
                 columnDefs={columnDefs}
