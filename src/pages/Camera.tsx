@@ -64,23 +64,21 @@ const Camera = () => {
       <AppHeader selectedTab="" isCameraPage={true} />
       <main className="flex-1 p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-6">
-            <div className="flex items-center gap-4">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input
-                  type="text"
-                  placeholder="Search by Task ID..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-12 bg-card border-border"
-                />
-              </div>
-              <div className="bg-card border border-border rounded-lg px-6 h-12 flex items-center justify-center whitespace-nowrap">
-                <span className="text-foreground font-medium">
-                  Total Count - {filteredTasks.length}
-                </span>
-              </div>
+          <div className="mb-6 flex items-center gap-4">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Input
+                type="text"
+                placeholder="Search by Task ID..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 h-12 bg-card border-border"
+              />
+            </div>
+            <div className="h-12 flex items-center justify-center px-4">
+              <span className="text-muted-foreground text-sm">
+                Total Count: <span className="text-foreground font-semibold">{filteredTasks.length}</span>
+              </span>
             </div>
           </div>
 
@@ -98,7 +96,7 @@ const Camera = () => {
                 <div
                   key={task.task_id}
                   onClick={() => handleTaskClick(task.task_id)}
-                  className="bg-card border border-border rounded-lg p-4 cursor-pointer hover:bg-accent hover:border-primary transition-all duration-200 flex items-center justify-center"
+                  className="bg-card border border-border rounded-lg p-4 cursor-pointer hover:bg-primary/5 hover:shadow-md hover:border-primary/30 transition-all duration-200 flex items-center justify-center"
                   style={{ width: "275px", height: "50px" }}
                 >
                   <span className="text-foreground font-medium truncate">

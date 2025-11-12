@@ -108,9 +108,11 @@ const CameraTaskDetails = () => {
       cellRenderer: (params: any) => (
         <button
           onClick={() => handlePlayClick(params.data)}
-          className="flex items-center justify-center w-full h-full text-primary hover:text-primary/80 transition-colors"
+          className="flex items-center justify-center w-full h-full group"
         >
-          <Play className="h-5 w-5" />
+          <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary group-hover:scale-110 transition-all duration-200">
+            <Play className="h-4 w-4 text-primary group-hover:text-primary-foreground fill-current" />
+          </div>
         </button>
       ),
     },
@@ -120,9 +122,11 @@ const CameraTaskDetails = () => {
       cellRenderer: (params: any) => (
         <button
           onClick={() => handleDownloadClick(params.data.clip_url)}
-          className="flex items-center justify-center w-full h-full text-primary hover:text-primary/80 transition-colors"
+          className="flex items-center justify-center w-full h-full group"
         >
-          <Download className="h-5 w-5" />
+          <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary group-hover:scale-110 transition-all duration-200">
+            <Download className="h-4 w-4 text-primary group-hover:text-primary-foreground" />
+          </div>
         </button>
       ),
     },
@@ -133,7 +137,7 @@ const CameraTaskDetails = () => {
       <AppHeader selectedTab="" isCameraPage={true} />
       <main className="flex-1 p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-6 flex items-center gap-4">
+          <div className="mb-4 flex items-center gap-4">
             <Button
               variant="outline"
               size="sm"
@@ -143,10 +147,11 @@ const CameraTaskDetails = () => {
               <ArrowLeft className="h-4 w-4" />
               Back to Tasks
             </Button>
-            <h1 className="text-2xl font-bold text-foreground">
-              Task: {taskId}
-            </h1>
           </div>
+          
+          <h1 className="text-2xl font-bold text-foreground text-center mb-6">
+            Task: {taskId}
+          </h1>
 
           {loading ? (
             <div className="text-center text-muted-foreground py-12">
@@ -167,7 +172,7 @@ const CameraTaskDetails = () => {
                   resizable: true,
                 }}
                 pagination={true}
-                paginationPageSize={20}
+                paginationPageSize={50}
                 domLayout="normal"
               />
             </div>
