@@ -133,7 +133,7 @@ const ApkLink = () => {
                     <h3 className="font-semibold text-purple-600 mb-2 text-sm flex items-center gap-1">
                       🚀 Latest Update Highlights
                     </h3>
-                    <ul className="space-y-1.5 text-xs text-foreground/80">
+                    <ul className="space-y-1.5 text-s text-foreground/80">
                       <li>• Easily track pending orders in one place.</li>
                       <li>• View available trays in the station instantly.</li>
                       <li>• Search by Item ID or Tray ID to call trays on demand.</li>
