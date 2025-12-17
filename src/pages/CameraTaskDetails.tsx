@@ -195,7 +195,7 @@ const CameraTaskDetails = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <AppHeader selectedTab="" isCameraPage={true} />
       <main className="p-2 sm:p-4">
-        <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div className="mb-3 sm:mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <Button variant="outline" size="sm" onClick={() => navigate("/camera")} className="flex items-center gap-2">
             <ArrowLeft className="h-4 w-4" />
             <span className="hidden sm:inline">Back to Tasks</span>
