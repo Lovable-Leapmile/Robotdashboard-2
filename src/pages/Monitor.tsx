@@ -18,8 +18,7 @@ const Monitor = () => {
         {monitorUrl && (
           <iframe
             src={monitorUrl}
-            className="w-full h-full rounded-lg shadow-sm"
-            loading="lazy"
+            className="w-full h-[calc(100vh-90px)] rounded-lg shadow-sm"
             title="Monitor Details"
           />
         )}
