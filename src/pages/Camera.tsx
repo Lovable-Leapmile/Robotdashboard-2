@@ -101,7 +101,7 @@ const Camera = () => {
       <main className="flex-1 p-2 sm:p-4">
         <div className="max-w-9xl mx-auto">
           <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            <div className="relative w-full sm:w-[80%]">
+            <div className="relative w-full sm:w-[90%]">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <Input
                 type="text"
