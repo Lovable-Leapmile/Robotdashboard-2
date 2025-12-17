@@ -8,19 +8,9 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import { Play, Download, ArrowLeft, RefreshCw, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuthSession } from "@/hooks/useAuthSession";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -70,7 +60,7 @@ const CameraTaskDetails = () => {
               "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2wiOiJhZG1pbiIsImV4cCI6MTkwMDY1MzE0M30.asYhgMAOvrau4G6LI4V4IbgYZ022g_GX0qZxaS57GQc",
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       const data = await response.json();
       if (data.records) {
@@ -84,7 +74,7 @@ const CameraTaskDetails = () => {
   };
 
   const handlePlayClick = (event: CameraEvent) => {
-    const index = events.findIndex(e => e.clip_filename === event.clip_filename);
+    const index = events.findIndex((e) => e.clip_filename === event.clip_filename);
     setCurrentVideoIndex(index);
     setSelectedVideo(event);
     setIsDialogOpen(true);
@@ -113,14 +103,7 @@ const CameraTaskDetails = () => {
   const handleDownloadCSV = () => {
     if (events.length === 0) return;
 
-    const headers = [
-      "Task ID",
-      "Start Time",
-      "Stop Time",
-      "File Name",
-      "Camera Name",
-      "Clip URL",
-    ];
+    const headers = ["Task ID", "Start Time", "Stop Time", "File Name", "Camera Name", "Clip URL"];
 
     const csvContent = [
       headers.join(","),
@@ -132,7 +115,7 @@ const CameraTaskDetails = () => {
           event.clip_filename,
           event.camera_device_id,
           event.clip_url,
-        ].join(",")
+        ].join(","),
       ),
     ].join("\n");
 
@@ -211,14 +194,9 @@ const CameraTaskDetails = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <AppHeader selectedTab="" isCameraPage={true} />
-      <main className="p-3 sm:p-6">
+      <main className="p-2 sm:p-4">
         <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => navigate("/camera")}
-            className="flex items-center gap-2"
-          >
+          <Button variant="outline" size="sm" onClick={() => navigate("/camera")} className="flex items-center gap-2">
             <ArrowLeft className="h-4 w-4" />
             <span className="hidden sm:inline">Back to Tasks</span>
             <span className="sm:hidden">Back</span>
@@ -251,10 +229,7 @@ const CameraTaskDetails = () => {
                       checked={autoRefresh}
                       onCheckedChange={(checked) => setAutoRefresh(checked as boolean)}
                     />
-                    <label
-                      htmlFor="auto-refresh"
-                      className="cursor-pointer flex items-center"
-                    >
+                    <label htmlFor="auto-refresh" className="cursor-pointer flex items-center">
                       <RefreshCw className="h-5 w-5 text-foreground" />
                     </label>
                   </div>
@@ -267,44 +242,40 @@ const CameraTaskDetails = () => {
           </TooltipProvider>
         </div>
 
-          {loading ? (
-            <div className="text-center text-muted-foreground py-12">
-              Loading camera events...
-            </div>
-          ) : events.length === 0 ? (
-            <div className="text-center text-muted-foreground py-12">
-              No camera events found for this task
-            </div>
-          ) : (
-            <div className="ag-theme-quartz w-full" style={{ height: 'calc(100vh - 180px)' }}>
-              <AgGridReact
-                rowData={events}
-                columnDefs={columnDefs}
-                defaultColDef={{
-                  sortable: true,
-                  filter: true,
-                  resizable: true,
-                }}
-                rowHeight={60}
-                pagination={true}
-                paginationPageSize={50}
-                domLayout="normal"
-              />
-            </div>
-          )}
+        {loading ? (
+          <div className="text-center text-muted-foreground py-12">Loading camera events...</div>
+        ) : events.length === 0 ? (
+          <div className="text-center text-muted-foreground py-12">No camera events found for this task</div>
+        ) : (
+          <div className="ag-theme-quartz w-full" style={{ height: "calc(100vh - 155px)" }}>
+            <AgGridReact
+              rowData={events}
+              columnDefs={columnDefs}
+              defaultColDef={{
+                sortable: true,
+                filter: true,
+                resizable: true,
+              }}
+              rowHeight={35}
+              pagination={true}
+              paginationPageSize={50}
+              domLayout="normal"
+            />
+          </div>
+        )}
       </main>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent 
+        <DialogContent
           className="p-0 gap-0 w-[95vw] max-w-6xl h-auto max-h-[95vh]"
-          style={{ 
-            background: 'linear-gradient(135deg, #f3f0ff 0%, #ffffff 100%)',
-            border: '2px solid #351c75'
+          style={{
+            background: "linear-gradient(135deg, #f3f0ff 0%, #ffffff 100%)",
+            border: "2px solid #351c75",
           }}
         >
           {/* Title Row */}
           <div className="flex items-center justify-center relative px-6 pt-6 pb-2.5">
-            <DialogTitle className="text-lg font-semibold text-center" style={{ color: '#351c75' }}>
+            <DialogTitle className="text-lg font-semibold text-center" style={{ color: "#351c75" }}>
               {selectedVideo?.camera_device_id}
             </DialogTitle>
           </div>
@@ -319,18 +290,18 @@ const CameraTaskDetails = () => {
                   onClick={handlePrevVideo}
                   disabled={currentVideoIndex === 0}
                   className="shrink-0 bg-[#351c75] text-white hover:bg-white hover:text-[#351c75] focus-visible:ring-[#351c75] disabled:opacity-50 transition-colors"
-                  style={{ borderColor: '#351c75' }}
+                  style={{ borderColor: "#351c75" }}
                 >
                   <ChevronLeft className="h-6 w-6" />
                 </Button>
-                
+
                 <div className="flex-1 flex items-center justify-center min-w-0">
-                  {selectedVideo.clip_filename.toLowerCase().endsWith('.mp4') ? (
+                  {selectedVideo.clip_filename.toLowerCase().endsWith(".mp4") ? (
                     <video
                       controls
                       autoPlay
                       className="max-w-full h-auto rounded-lg shadow-lg"
-                      style={{ maxHeight: '75vh' }}
+                      style={{ maxHeight: "75vh" }}
                       src={selectedVideo.clip_url}
                       key={selectedVideo.clip_filename}
                     >
@@ -341,7 +312,7 @@ const CameraTaskDetails = () => {
                       src={selectedVideo.clip_url}
                       alt={selectedVideo.clip_filename}
                       className="max-w-full h-auto rounded-lg shadow-lg"
-                      style={{ maxHeight: '75vh' }}
+                      style={{ maxHeight: "75vh" }}
                       key={selectedVideo.clip_filename}
                     />
                   )}
@@ -353,7 +324,7 @@ const CameraTaskDetails = () => {
                   onClick={handleNextVideo}
                   disabled={currentVideoIndex === events.length - 1}
                   className="shrink-0 bg-[#351c75] text-white hover:bg-white hover:text-[#351c75] focus-visible:ring-[#351c75] disabled:opacity-50 transition-colors"
-                  style={{ borderColor: '#351c75' }}
+                  style={{ borderColor: "#351c75" }}
                 >
                   <ChevronRight className="h-6 w-6" />
                 </Button>
@@ -361,7 +332,7 @@ const CameraTaskDetails = () => {
 
               {/* Filename Row */}
               <div className="flex items-center justify-center px-6 pb-6 pt-2">
-                <p className="text-sm font-bold text-center" style={{ color: '#351c75' }}>
+                <p className="text-sm font-bold text-center" style={{ color: "#351c75" }}>
                   {selectedVideo.clip_filename}
                 </p>
               </div>
