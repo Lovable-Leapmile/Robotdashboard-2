@@ -40,22 +40,22 @@ const Trays = () => {
     { field: "tray_divider", headerName: "Divider", sortable: true, filter: true, flex: 1 },
     { field: "tray_height", headerName: "Height (mm)", sortable: true, filter: true, flex: 1 },
     { field: "tray_weight", headerName: "Weight", sortable: true, filter: true, flex: 1 },
-    { 
-      field: "tags", 
-      headerName: "Tags", 
-      sortable: true, 
-      filter: true, 
+    {
+      field: "tags",
+      headerName: "Tags",
+      sortable: true,
+      filter: true,
       flex: 1.5,
       valueFormatter: (params) => {
         if (!params.value || params.value.length === 0) return "N/A";
         return params.value.join(", ");
-      }
+      },
     },
-    { 
-      field: "created_at", 
-      headerName: "Created At", 
-      sortable: true, 
-      filter: true, 
+    {
+      field: "created_at",
+      headerName: "Created At",
+      sortable: true,
+      filter: true,
       flex: 1.5,
       valueFormatter: (params) => {
         if (!params.value) return "";
@@ -64,13 +64,13 @@ const Trays = () => {
         } catch {
           return params.value;
         }
-      }
+      },
     },
-    { 
-      field: "updated_at", 
-      headerName: "Updated At", 
-      sortable: true, 
-      filter: true, 
+    {
+      field: "updated_at",
+      headerName: "Updated At",
+      sortable: true,
+      filter: true,
       flex: 1.5,
       valueFormatter: (params) => {
         if (!params.value) return "";
@@ -79,8 +79,8 @@ const Trays = () => {
         } catch {
           return params.value;
         }
-      }
-    }
+      },
+    },
   ];
 
   useEffect(() => {
@@ -102,9 +102,10 @@ const Trays = () => {
       const response = await fetch("https://amsstores1.leapmile.com/robotmanager/trays", {
         method: "GET",
         headers: {
-          "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2wiOiJhZG1pbiIsImV4cCI6MTkwMDY1MzE0M30.asYhgMAOvrau4G6LI4V4IbgYZ022g_GX0qZxaS57GQc",
-          "Content-Type": "application/json"
-        }
+          Authorization:
+            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2wiOiJhZG1pbiIsImV4cCI6MTkwMDY1MzE0M30.asYhgMAOvrau4G6LI4V4IbgYZ022g_GX0qZxaS57GQc",
+          "Content-Type": "application/json",
+        },
       });
 
       if (response.status === 404) {
@@ -126,15 +127,18 @@ const Trays = () => {
         tags: Array.isArray(r.tags)
           ? r.tags
           : typeof r.tags === "string"
-          ? r.tags.split(",").map((s: string) => s.trim()).filter(Boolean)
-          : [],
+            ? r.tags
+                .split(",")
+                .map((s: string) => s.trim())
+                .filter(Boolean)
+            : [],
       }));
       setRowData(mapped);
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to load trays data",
-        variant: "destructive"
+        variant: "destructive",
       });
       console.error("Error fetching trays:", error);
     } finally {
@@ -143,20 +147,16 @@ const Trays = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fafafa' }}>
+    <div className="min-h-screen" style={{ backgroundColor: "#fafafa" }}>
       <AppHeader selectedTab="Trays" />
-      
-      <main className="p-3 sm:p-6">
+
+      <main className="p-2 sm:p-4">
         {!loading && rowData.length === 0 ? (
-          <div className="flex justify-center items-center" style={{ height: 'calc(100vh - 180px)' }}>
-            <img 
-              src={noRecordsImage} 
-              alt="No records found" 
-              className="w-48 sm:w-[340px]"
-            />
+          <div className="flex justify-center items-center" style={{ height: "calc(100vh - 180px)" }}>
+            <img src={noRecordsImage} alt="No records found" className="w-48 sm:w-[340px]" />
           </div>
         ) : (
-          <div className="ag-theme-quartz w-full" style={{ height: 'calc(100vh - 180px)' }}>
+          <div className="ag-theme-quartz w-full" style={{ height: "calc(100vh - 145px)" }}>
             <AgGridReact
               rowData={rowData}
               columnDefs={columnDefs}
@@ -164,14 +164,14 @@ const Trays = () => {
                 resizable: true,
                 minWidth: 100,
                 sortable: true,
-                filter: true
+                filter: true,
               }}
               pagination={true}
               paginationPageSize={50}
-              rowHeight={60}
+              rowHeight={35}
               onGridReady={(params) => {
                 gridApiRef.current = params.api;
-                params.api.setGridOption('quickFilterText', quickFilter);
+                params.api.setGridOption("quickFilterText", quickFilter);
                 params.api.sizeColumnsToFit();
               }}
             />
