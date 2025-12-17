@@ -147,12 +147,12 @@ const Camera = () => {
           ) : filteredTasks.length === 0 ? (
             <div className="text-center text-muted-foreground py-12">No tasks found</div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
               {filteredTasks.map((task) => (
                 <div
                   key={task.task_id}
                   onClick={() => handleTaskClick(task.task_id)}
-                  className="bg-card border border-border rounded-lg p-2 sm:p-3 cursor-pointer hover:bg-primary/5 hover:shadow-md hover:border-primary/30 transition-all duration-200 flex items-center justify-center min-h-[50px]"
+                  className="bg-card border border-border rounded-lg p-2 sm:p-3 cursor-pointer hover:bg-primary/5 hover:shadow-md hover:border-primary/30 transition-all duration-200 flex items-center justify-center min-h-[40px]"
                 >
                   <span className="text-foreground font-medium truncate text-sm sm:text-base">{task.task_id}</span>
                 </div>
