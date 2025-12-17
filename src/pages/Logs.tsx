@@ -43,30 +43,22 @@ const Logs = () => {
   const { toast } = useToast();
 
   const getFormattedData = (data: LogData[]) => {
-    return data.map(row => {
+    return data.map((row) => {
       const message = row.message;
       return {
         "Created At": row.created_at ? format(new Date(row.created_at), "dd-MM-yyyy HH:mm:ss") : "N/A",
-        "Message": typeof message === "object" && message?.msg 
-          ? message.msg.split("\\n")[0] 
-          : typeof message === "object" 
-            ? JSON.stringify(message).split("\\n")[0]
-            : String(message || "N/A"),
-        "Action": typeof message === "object" && message?.metadata?.station_slot_id 
-          ? message.metadata.station_slot_id 
-          : "N/A",
-        "Status": typeof message === "object" && message?.status 
-          ? message.status 
-          : "N/A",
-        "Tray ID": typeof message === "object" && message?.metadata?.tray_id 
-          ? message.metadata.tray_id 
-          : "N/A",
-        "Slot ID": typeof message === "object" && message?.metadata?.slot_id 
-          ? message.metadata.slot_id 
-          : "N/A",
-        "State": typeof message === "object" && message?.metadata?.state 
-          ? message.metadata.state 
-          : "N/A",
+        Message:
+          typeof message === "object" && message?.msg
+            ? message.msg.split("\\n")[0]
+            : typeof message === "object"
+              ? JSON.stringify(message).split("\\n")[0]
+              : String(message || "N/A"),
+        Action:
+          typeof message === "object" && message?.metadata?.station_slot_id ? message.metadata.station_slot_id : "N/A",
+        Status: typeof message === "object" && message?.status ? message.status : "N/A",
+        "Tray ID": typeof message === "object" && message?.metadata?.tray_id ? message.metadata.tray_id : "N/A",
+        "Slot ID": typeof message === "object" && message?.metadata?.slot_id ? message.metadata.slot_id : "N/A",
+        State: typeof message === "object" && message?.metadata?.state ? message.metadata.state : "N/A",
       };
     });
   };
@@ -77,7 +69,7 @@ const Logs = () => {
       toast({
         title: "No Data",
         description: "No logs to export",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
@@ -85,16 +77,16 @@ const Logs = () => {
     const headers = Object.keys(formattedData[0]);
     const csvContent = [
       headers.join(","),
-      ...formattedData.map(row => 
-        headers.map(header => {
-          const value = row[header as keyof typeof row] || "";
-          // Escape quotes and wrap in quotes if contains comma
-          const escaped = String(value).replace(/"/g, '""');
-          return escaped.includes(",") || escaped.includes('"') || escaped.includes("\n") 
-            ? `"${escaped}"` 
-            : escaped;
-        }).join(",")
-      )
+      ...formattedData.map((row) =>
+        headers
+          .map((header) => {
+            const value = row[header as keyof typeof row] || "";
+            // Escape quotes and wrap in quotes if contains comma
+            const escaped = String(value).replace(/"/g, '""');
+            return escaped.includes(",") || escaped.includes('"') || escaped.includes("\n") ? `"${escaped}"` : escaped;
+          })
+          .join(","),
+      ),
     ].join("\n");
 
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
@@ -116,13 +108,13 @@ const Logs = () => {
       toast({
         title: "No Data",
         description: "No logs to export",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
 
     const headers = Object.keys(formattedData[0]);
-    
+
     // Create XML for Excel
     let excelContent = `<?xml version="1.0" encoding="UTF-8"?>
 <?mso-application progid="Excel.Sheet"?>
@@ -131,15 +123,24 @@ const Logs = () => {
   <Worksheet ss:Name="Logs">
     <Table>
       <Row>
-        ${headers.map(h => `<Cell><Data ss:Type="String">${h}</Data></Cell>`).join("")}
+        ${headers.map((h) => `<Cell><Data ss:Type="String">${h}</Data></Cell>`).join("")}
       </Row>
-      ${formattedData.map(row => `
+      ${formattedData
+        .map(
+          (row) => `
       <Row>
-        ${headers.map(header => {
-          const value = String(row[header as keyof typeof row] || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-          return `<Cell><Data ss:Type="String">${value}</Data></Cell>`;
-        }).join("")}
-      </Row>`).join("")}
+        ${headers
+          .map((header) => {
+            const value = String(row[header as keyof typeof row] || "")
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;");
+            return `<Cell><Data ss:Type="String">${value}</Data></Cell>`;
+          })
+          .join("")}
+      </Row>`,
+        )
+        .join("")}
     </Table>
   </Worksheet>
 </Workbook>`;
@@ -158,11 +159,11 @@ const Logs = () => {
   };
 
   const columnDefs: ColDef<LogData>[] = [
-    { 
-      field: "created_at", 
-      headerName: "Created At", 
-      sortable: true, 
-      filter: true, 
+    {
+      field: "created_at",
+      headerName: "Created At",
+      sortable: true,
+      filter: true,
       flex: 1.5,
       valueFormatter: (params) => {
         if (!params.value) return "N/A";
@@ -171,17 +172,17 @@ const Logs = () => {
         } catch {
           return params.value;
         }
-      }
+      },
     },
-    { 
-      field: "message", 
-      headerName: "Message", 
-      sortable: true, 
-      filter: true, 
+    {
+      field: "message",
+      headerName: "Message",
+      sortable: true,
+      filter: true,
       flex: 2,
       valueFormatter: (params) => {
         if (!params.value) return "N/A";
-        
+
         // If message is an object with a 'msg' field, use that
         let messageStr = "";
         if (typeof params.value === "object" && params.value.msg) {
@@ -191,20 +192,20 @@ const Logs = () => {
         } else {
           messageStr = String(params.value);
         }
-        
+
         // Trim at \n
         const newlineIndex = messageStr.indexOf("\\n");
         if (newlineIndex !== -1) {
           messageStr = messageStr.substring(0, newlineIndex);
         }
         return messageStr;
-      }
+      },
     },
-    { 
-      field: "message", 
-      headerName: "Action", 
-      sortable: true, 
-      filter: true, 
+    {
+      field: "message",
+      headerName: "Action",
+      sortable: true,
+      filter: true,
       flex: 1,
       valueFormatter: (params) => {
         if (!params.value) return "N/A";
@@ -212,13 +213,13 @@ const Logs = () => {
           return params.value.metadata.station_slot_id;
         }
         return "N/A";
-      }
+      },
     },
-    { 
-      field: "message", 
-      headerName: "Status", 
-      sortable: true, 
-      filter: true, 
+    {
+      field: "message",
+      headerName: "Status",
+      sortable: true,
+      filter: true,
       flex: 1,
       valueFormatter: (params) => {
         if (!params.value) return "N/A";
@@ -226,13 +227,13 @@ const Logs = () => {
           return params.value.status;
         }
         return "N/A";
-      }
+      },
     },
-    { 
-      field: "message", 
-      headerName: "Tray ID", 
-      sortable: true, 
-      filter: true, 
+    {
+      field: "message",
+      headerName: "Tray ID",
+      sortable: true,
+      filter: true,
       flex: 1,
       valueFormatter: (params) => {
         if (!params.value) return "N/A";
@@ -240,13 +241,13 @@ const Logs = () => {
           return params.value.metadata.tray_id;
         }
         return "N/A";
-      }
+      },
     },
-    { 
-      field: "message", 
-      headerName: "Slot ID", 
-      sortable: true, 
-      filter: true, 
+    {
+      field: "message",
+      headerName: "Slot ID",
+      sortable: true,
+      filter: true,
       flex: 1,
       valueFormatter: (params) => {
         if (!params.value) return "N/A";
@@ -254,13 +255,13 @@ const Logs = () => {
           return params.value.metadata.slot_id;
         }
         return "N/A";
-      }
+      },
     },
-    { 
-      field: "message", 
-      headerName: "State", 
-      sortable: true, 
-      filter: true, 
+    {
+      field: "message",
+      headerName: "State",
+      sortable: true,
+      filter: true,
       flex: 1,
       valueFormatter: (params) => {
         if (!params.value) return "N/A";
@@ -268,8 +269,8 @@ const Logs = () => {
           return params.value.metadata.state;
         }
         return "N/A";
-      }
-    }
+      },
+    },
   ];
 
   useEffect(() => {
@@ -288,13 +289,17 @@ const Logs = () => {
   const fetchLogsData = async () => {
     try {
       setLoading(true);
-      const response = await fetch("https://amsstores1.leapmile.com/pubsub/subscribe?topic=amsstores1_AMSSTORES1-Nano", {
-        method: "GET",
-        headers: {
-          "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2wiOiJhZG1pbiIsImV4cCI6MTkwMDY1MzE0M30.asYhgMAOvrau4G6LI4V4IbgYZ022g_GX0qZxaS57GQc",
-          "Content-Type": "application/json"
-        }
-      });
+      const response = await fetch(
+        "https://amsstores1.leapmile.com/pubsub/subscribe?topic=amsstores1_AMSSTORES1-Nano",
+        {
+          method: "GET",
+          headers: {
+            Authorization:
+              "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2wiOiJhZG1pbiIsImV4cCI6MTkwMDY1MzE0M30.asYhgMAOvrau4G6LI4V4IbgYZ022g_GX0qZxaS57GQc",
+            "Content-Type": "application/json",
+          },
+        },
+      );
 
       const data = await response.json();
 
@@ -317,7 +322,7 @@ const Logs = () => {
       toast({
         title: "Error",
         description: "Failed to load logs data",
-        variant: "destructive"
+        variant: "destructive",
       });
       console.error("Error fetching logs:", error);
     } finally {
@@ -328,10 +333,10 @@ const Logs = () => {
   return (
     <div className="min-h-screen bg-muted">
       <AppHeader selectedTab="" isLogsPage={true} />
-      
-      <main className="p-3 sm:p-6">
+
+      <main className="p-2 sm:p-4">
         {/* Export Buttons */}
-        <div className="flex justify-end mb-4">
+        {/* <div className="flex justify-end mb-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button 
@@ -353,18 +358,14 @@ const Logs = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </div>
+        </div> */}
 
         {!loading && rowData.length === 0 ? (
-          <div className="flex flex-col items-center justify-center" style={{ minHeight: 'calc(100vh - 180px)' }}>
-            <img 
-              src={noRecordsImage} 
-              alt="No Record found" 
-              className="w-48 sm:w-[340px]"
-            />
+          <div className="flex flex-col items-center justify-center" style={{ minHeight: "calc(100vh - 180px)" }}>
+            <img src={noRecordsImage} alt="No Record found" className="w-48 sm:w-[340px]" />
           </div>
         ) : (
-          <div className="ag-theme-quartz w-full overflow-visible" style={{ height: 'calc(100vh - 180px)' }}>
+          <div className="ag-theme-quartz w-full overflow-visible" style={{ height: "calc(100vh - 145px)" }}>
             <AgGridReact
               rowData={rowData}
               columnDefs={columnDefs}
@@ -372,15 +373,15 @@ const Logs = () => {
                 resizable: true,
                 minWidth: 80,
                 sortable: true,
-                filter: true
+                filter: true,
               }}
               pagination={true}
               paginationPageSize={50}
-              rowHeight={60}
+              rowHeight={35}
               popupParent={document.body}
               onGridReady={(params) => {
                 gridApiRef.current = params.api;
-                params.api.setGridOption('quickFilterText', quickFilter);
+                params.api.setGridOption("quickFilterText", quickFilter);
                 params.api.sizeColumnsToFit();
               }}
             />
