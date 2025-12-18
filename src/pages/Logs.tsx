@@ -8,7 +8,6 @@ import { ColDef, ModuleRegistry, AllCommunityModule } from "ag-grid-community";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthSession } from "@/hooks/useAuthSession";
-import { getCookie } from "@/lib/cookies";
 import noRecordsImage from "@/assets/no_records.png";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
@@ -275,8 +274,8 @@ const Logs = () => {
   ];
 
   useEffect(() => {
-    const storedUserName = getCookie("user_name");
-    const storedUserId = getCookie("user_id");
+    const storedUserName = localStorage.getItem("user_name");
+    const storedUserId = localStorage.getItem("user_id");
 
     if (!storedUserName || !storedUserId) {
       navigate("/");

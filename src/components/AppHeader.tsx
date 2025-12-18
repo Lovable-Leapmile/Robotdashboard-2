@@ -3,7 +3,6 @@ import { ScrollText, Activity, LogOut, Camera, Menu, X, Home, ClipboardList, Vid
 import whiteLogo from "@/assets/white_logo-2.png";
 import { useState } from "react";
 import html2canvas from "html2canvas";
-import { clearUserSession } from "@/lib/cookies";
 import {
   Tooltip,
   TooltipContent,
@@ -44,7 +43,9 @@ const AppHeader = ({ selectedTab, isTasksPage, activeTaskTab, isMonitorPage, isC
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    clearUserSession();
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("user_name");
+    localStorage.removeItem("login_timestamp");
     navigate("/");
   };
 

@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Download, ExternalLink, Calendar, Package, Smartphone, Shield, Store, Search, ChevronDown, FileText } from "lucide-react";
 import { useAuthSession } from "@/hooks/useAuthSession";
-import { getCookie } from "@/lib/cookies";
 
 interface AppVersion {
   appType: "admin" | "store";
@@ -102,8 +101,8 @@ const ApkLink = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUserName = getCookie("user_name");
-    const storedUserId = getCookie("user_id");
+    const storedUserName = localStorage.getItem("user_name");
+    const storedUserId = localStorage.getItem("user_id");
 
     if (!storedUserName || !storedUserId) {
       navigate("/");

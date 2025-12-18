@@ -7,7 +7,6 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import { ColDef, ModuleRegistry, AllCommunityModule } from "ag-grid-community";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthSession } from "@/hooks/useAuthSession";
-import { getCookie } from "@/lib/cookies";
 import noRecordsImage from "@/assets/no_records.png";
 
 // Register AG Grid Community modules (required in v34+)
@@ -67,8 +66,8 @@ const Extremes = () => {
   ];
 
   useEffect(() => {
-    const storedUserName = getCookie("user_name");
-    const storedUserId = getCookie("user_id");
+    const storedUserName = localStorage.getItem("user_name");
+    const storedUserId = localStorage.getItem("user_id");
 
     if (!storedUserName || !storedUserId) {
       navigate("/");
