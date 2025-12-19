@@ -31,7 +31,7 @@ interface StatusCardProps {
 
 const formatValue = (key: string, value: string | undefined): string => {
   if (!value) return "N/A";
-  
+
   // Format datetime fields
   if (key === "SUPERVISOR START TIME") {
     try {
@@ -41,18 +41,16 @@ const formatValue = (key: string, value: string | undefined): string => {
       return value;
     }
   }
-  
+
   return value;
 };
 
 const StatusCard = memo(({ label, value }: StatusCardProps) => {
   const formattedValue = formatValue(label, value);
-  
+
   return (
     <div className="bg-card border border-border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
-      <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 truncate">
-        {label.replace(/_/g, " ")}
-      </p>
+      <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 truncate">{label.replace(/_/g, " ")}</p>
       <p className="text-lg font-semibold text-foreground truncate" title={formattedValue}>
         {formattedValue}
       </p>
@@ -86,19 +84,20 @@ const Monitor = () => {
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
-    
+
     abortControllerRef.current = new AbortController();
-    
+
     try {
       const response = await fetch(
         "https://amsstores1.leapmile.com/pubsub/subscribe?topic=STATUSMONITOR_EVENTS&num_records=1",
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2wiOiJhZG1pbiIsImV4cCI6MTkwMDY1MzE0M30.asYhgMAOvrau4G6LI4V4IbgYZ022g_GX0qZxaS57GQc",
+            Authorization:
+              "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2wiOiJhZG1pbiIsImV4cCI6MTkwMDY1MzE0M30.asYhgMAOvrau4G6LI4V4IbgYZ022g_GX0qZxaS57GQc",
           },
           signal: abortControllerRef.current.signal,
-        }
+        },
       );
 
       if (!response.ok) {
@@ -106,17 +105,17 @@ const Monitor = () => {
       }
 
       const data = await response.json();
-      
+
       if (data?.records?.[0]?.message) {
         const newDataString = JSON.stringify(data.records[0].message);
-        
+
         // Only update state if data actually changed
         if (newDataString !== previousDataRef.current) {
           previousDataRef.current = newDataString;
           setStatusData(data.records[0].message);
         }
       }
-      
+
       setError(null);
     } catch (err) {
       if (err instanceof Error && err.name === "AbortError") {
@@ -130,9 +129,9 @@ const Monitor = () => {
 
   useEffect(() => {
     fetchStatus();
-    
+
     const intervalId = setInterval(fetchStatus, 500);
-    
+
     return () => {
       clearInterval(intervalId);
       if (abortControllerRef.current) {
@@ -144,9 +143,7 @@ const Monitor = () => {
   const renderStatusCards = () => {
     if (!statusData) return null;
 
-    const entries = Object.entries(statusData).filter(
-      ([key]) => key !== "msg"
-    );
+    const entries = Object.entries(statusData).filter(([key]) => key !== "msg");
 
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
@@ -162,11 +159,6 @@ const Monitor = () => {
       <AppHeader selectedTab="" isMonitorPage={true} />
       <main className="flex-1 overflow-auto">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="p-4">
-            <h1 className="text-xl font-semibold text-foreground text-center">System Status Monitor</h1>
-          </div>
-
           {/* Error state */}
           {error && (
             <div className="m-4 p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
