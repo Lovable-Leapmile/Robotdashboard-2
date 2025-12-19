@@ -6,6 +6,7 @@ import { useAuthSession } from "@/hooks/useAuthSession";
 import blockImg from "@/assets/block.png";
 import stationImg from "@/assets/station.png";
 import trayImg from "@/assets/tray.png";
+import shuttleImg from "@/assets/shuttle.png";
 
 interface Slot {
   slot_id: string;
@@ -283,6 +284,19 @@ const Racks = () => {
                     ))}
                   </div>
                 </div>
+              </div>
+
+              {/* Shuttle Image between Row 1 and Row 0 */}
+              <div className="flex items-center justify-center">
+                <img 
+                  src={shuttleImg} 
+                  alt="Shuttle" 
+                  className="h-full object-contain"
+                  style={{ 
+                    opacity: 0.7,
+                    height: `${Math.max(row1Depth1Slots.length, row0Depth1Slots.length) * 55}px`
+                  }}
+                />
               </div>
 
               {/* Row 0 Section */}
