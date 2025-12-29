@@ -333,6 +333,7 @@ const Reports = () => {
         receive_date: item.inbound_date || "",
         item_id: item.item_id,
         stock: item.available_quantity,
+        tray_divider: item.tray_divider,
         tray_id: item.tray_id,
         tray_weight_kg: item.tray_weight ? (parseFloat(item.tray_weight) / 1000).toFixed(3) : "",
         item_description: item.item_description,
