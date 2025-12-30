@@ -236,10 +236,6 @@ const Racks = () => {
                   border: "2px solid #f59e0b",
                   boxShadow: "0 2px 8px rgba(245, 158, 11, 0.3)",
                   padding: "2px 4px",
-                  borderTopLeftRadius: "4px",
-                  borderTopRightRadius: "4px",
-                  borderBottomLeftRadius: "0",
-                  borderBottomRightRadius: "0",
                 }}
               >
                 <img src={stationImg} alt="Station" className="w-[108px] h-[8px] sm:w-[138px] sm:h-[10px]" />
