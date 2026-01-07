@@ -267,17 +267,21 @@ const Home = () => {
     <div className="min-h-screen" style={{ backgroundColor: "#fafafa" }}>
       <AppHeader selectedTab="Robot" />
 
-      <main className="px-2 sm:px-4 py-3 sm:py-4 overflow-x-auto">
+      <main className="px-2 sm:px-4 py-3 sm:py-4 overflow-hidden">
         {/* Content row */}
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-0">
-          {/* Rack visualization with shuttle between rows - scrollable container */}
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
+          {/* Rack visualization with shuttle between rows - scrollable container with hidden scrollbar */}
           <div 
             ref={rackContainerRef}
-            className="flex gap-4 sm:gap-0 pb-4 lg:pb-0 overflow-y-auto scroll-smooth"
-            style={{ maxHeight: 'calc(100vh - 140px)' }}
+            className="flex-shrink-0 overflow-y-auto overflow-x-hidden scroll-smooth scrollbar-hide"
+            style={{ 
+              maxHeight: 'calc(100vh - 130px)',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            }}
           >
             {/* Combined Row 1, Shuttle Movement, and Row 0 with borders */}
-            <div className="flex shrink-0 bg-white rounded-lg border border-gray-200 shadow-sm" style={{ position: "relative" }}>
+            <div className="flex bg-white rounded-lg border border-gray-200 shadow-sm" style={{ position: "relative" }}>
               {/* Row 1 Section */}
               <div className="flex flex-col items-center p-3 border-r border-gray-200">
                 <div className="text-xs font-semibold text-center mb-2" style={{ color: "#351c75" }}>
