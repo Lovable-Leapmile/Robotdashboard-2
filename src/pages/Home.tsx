@@ -290,7 +290,7 @@ const Home = () => {
   };
 
   return (
-    <div className="h-screen max-h-screen overflow-hidden flex flex-col" style={{ backgroundColor: "#fafafa" }}>
+    <div className="flex flex-col lg:h-screen lg:max-h-screen lg:overflow-hidden" style={{ backgroundColor: "#fafafa" }}>
       <AppHeader selectedTab="Robot" />
 
       <main className="flex-1 px-2 sm:px-4 py-2 overflow-hidden">
