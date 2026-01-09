@@ -4,6 +4,7 @@ import AppHeader from "@/components/AppHeader";
 import { Input } from "@/components/ui/input";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { useAuthSession } from "@/hooks/useAuthSession";
+import { getCameraManagerBase } from "@/lib/api";
 import { getStoredAuthToken } from "@/lib/auth";
 import {
   DropdownMenu,
@@ -39,16 +40,16 @@ const Camera = () => {
   }, []);
 
   useEffect(() => {
-    // Filter valid tasks (exclude null/undefined task_ids)
-    let validTasks = tasks.filter((task) => task.task_id);
+    // Filter to only show task IDs starting with TID- (exclude null/undefined)
+    let tidTasks = tasks.filter((task) => task.task_id && task.task_id.startsWith("TID-"));
 
     // Apply search filter
     if (searchQuery.trim() !== "") {
-      validTasks = validTasks.filter((task) => task.task_id.toLowerCase().includes(searchQuery.toLowerCase()));
+      tidTasks = tidTasks.filter((task) => task.task_id.toLowerCase().includes(searchQuery.toLowerCase()));
     }
 
     // Apply sorting
-    const sortedTasks = [...validTasks].sort((a, b) => {
+    const sortedTasks = [...tidTasks].sort((a, b) => {
       switch (sortOption) {
         case "task_asc":
           return a.task_id.localeCompare(b.task_id);
@@ -75,27 +76,13 @@ const Camera = () => {
     try {
       const token = getStoredAuthToken();
       if (!token) return;
-      
-      // Read apiname from localStorage for dynamic endpoint construction
-      const apiname = localStorage.getItem("api_name") || "";
-      
-      if (!apiname) {
-        console.error("Missing api_name in localStorage");
-        setLoading(false);
-        return;
-      }
-      
-      // Construct dynamic endpoint: https://[apiname].leapmile.com/cameramanager/camera_events/tasks
-      const endpoint = `https://${apiname}.leapmile.com/cameramanager/camera_events/tasks`;
-      
-      const response = await fetch(endpoint, {
+      const response = await fetch(`${getCameraManagerBase()}/camera_events/tasks`, {
         headers: {
           Authorization: token,
           "Content-Type": "application/json",
         },
       });
       const data = await response.json();
-      
       if (data.records) {
         setTasks(data.records);
         setFilteredTasks(data.records);
