@@ -39,8 +39,16 @@ const Camera = () => {
   }, []);
 
   useEffect(() => {
+    // Get apiname from localStorage to determine filtering behavior
+    const apiname = localStorage.getItem("api_name") || "";
+    
     // Filter valid tasks (exclude null/undefined task_ids)
     let validTasks = tasks.filter((task) => task.task_id);
+    
+    // For amsstore1, apply TID- prefix filter; for all others, show all valid tasks
+    if (apiname === "amsstore1") {
+      validTasks = validTasks.filter((task) => task.task_id.startsWith("TID-"));
+    }
 
     // Apply search filter
     if (searchQuery.trim() !== "") {
