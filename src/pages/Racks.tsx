@@ -90,16 +90,14 @@ const Racks = () => {
       });
 
       const data = await response.json();
-      
+
       if (response.status === 404 || !data.records) {
         setActiveStationSlotIds(new Set());
         return;
       }
 
       const activeIds = new Set<string>(
-        data.records
-          .filter((task: any) => task.station_slot_id)
-          .map((task: any) => task.station_slot_id)
+        data.records.filter((task: any) => task.station_slot_id).map((task: any) => task.station_slot_id),
       );
       setActiveStationSlotIds(activeIds);
     } catch (error) {
@@ -186,7 +184,7 @@ const Racks = () => {
   const sortSlotsByIdDescending = (slots: Slot[]) => {
     // First check if any slots match S-1-0-X-Y pattern
     const s10Pattern = /^S-1-0-\d+-\d+$/;
-    const hasS10Slots = slots.some(slot => s10Pattern.test(slot.slot_id));
+    const hasS10Slots = slots.some((slot) => s10Pattern.test(slot.slot_id));
 
     // If S-1-0-X-Y pattern slots exist, use the special sorting
     if (hasS10Slots) {
@@ -312,7 +310,7 @@ const Racks = () => {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <div 
+                    <div
                       className={`relative flex items-center justify-center ${isStationActive ? "animate-pulse-station" : ""}`}
                       style={{
                         background: "linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)",
@@ -346,19 +344,18 @@ const Racks = () => {
     <div className="min-h-screen" style={{ backgroundColor: "#fafafa" }}>
       <AppHeader selectedTab="Racks" />
 
-      <main className="p-4 sm:p-8">
+      <main className="p-2 sm:p-8">
         {/* Rack selector with better spacing */}
-        <div className="flex justify-center mb-10">
-          <div className="bg-card rounded-xl border border-border p-5 shadow-md">
-            <div className="text-sm font-semibold text-primary mb-4 text-center tracking-wide">Select Rack</div>
+        <div className="flex justify-center mb-8">
+          <div className="bg-card rounded-xl border border-border p-3 shadow-md">
             <div className="flex flex-wrap gap-4 sm:gap-5 justify-center">
               {Array.from({ length: numRacks }, (_, index) => (
                 <div
                   key={index}
                   onClick={() => handleRackSelect(index)}
                   className={`flex items-center justify-center font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer w-8 h-8 sm:w-10 sm:h-10 rounded-lg ${
-                    selectedRack === index 
-                      ? "bg-primary-foreground text-primary border-2 border-primary shadow-lg scale-110" 
+                    selectedRack === index
+                      ? "bg-primary-foreground text-primary border-2 border-primary shadow-lg scale-110"
                       : "bg-primary text-primary-foreground hover:scale-105 hover:shadow-md"
                   }`}
                 >
@@ -389,9 +386,7 @@ const Racks = () => {
                           </div>
                         ))}
                       </div>
-                      <div className="text-xs font-medium mt-3 text-gray-500">
-                        Depth 2
-                      </div>
+                      <div className="text-xs font-medium mt-3 text-gray-500">Depth 2</div>
                     </div>
                     {/* Depth 1 - Vertical Column (Right) */}
                     <div className="flex flex-col items-center gap-2">
@@ -402,9 +397,7 @@ const Racks = () => {
                           </div>
                         ))}
                       </div>
-                      <div className="text-xs font-medium mt-3 text-gray-500">
-                        Depth 1
-                      </div>
+                      <div className="text-xs font-medium mt-3 text-gray-500">Depth 1</div>
                     </div>
                   </div>
                 </div>
@@ -437,9 +430,7 @@ const Racks = () => {
                           </div>
                         ))}
                       </div>
-                      <div className="text-xs font-medium mt-3 text-gray-500">
-                        Depth 1
-                      </div>
+                      <div className="text-xs font-medium mt-3 text-gray-500">Depth 1</div>
                     </div>
                     {/* Depth 2 - Vertical Column (Right) */}
                     <div className="flex flex-col items-center gap-2">
@@ -450,9 +441,7 @@ const Racks = () => {
                           </div>
                         ))}
                       </div>
-                      <div className="text-xs font-medium mt-3 text-gray-500">
-                        Depth 2
-                      </div>
+                      <div className="text-xs font-medium mt-3 text-gray-500">Depth 2</div>
                     </div>
                   </div>
                 </div>
