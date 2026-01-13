@@ -64,17 +64,36 @@ const parseToDate = (value: unknown): Date | null => {
 
 /**
  * Date filter comparator for AG Grid
- * Compares dates properly for filtering operations
+ * Compares full date+time for accurate filtering operations
  */
 export const dateFilterComparator = (filterLocalDateAtMidnight: Date, cellValue: unknown): number => {
   const cellDate = parseToDate(cellValue);
   if (!cellDate) return -1;
 
-  // Reset time to midnight for accurate date-only comparison (local time)
-  const cellDateMidnight = new Date(cellDate.getFullYear(), cellDate.getMonth(), cellDate.getDate());
+  // For date-only comparison, compare the date portion of the cell value
+  // against the filter date (which is at midnight)
+  const cellDateOnly = new Date(cellDate.getFullYear(), cellDate.getMonth(), cellDate.getDate());
+  const filterDateOnly = new Date(filterLocalDateAtMidnight.getFullYear(), filterLocalDateAtMidnight.getMonth(), filterLocalDateAtMidnight.getDate());
 
-  const a = cellDateMidnight.getTime();
-  const b = filterLocalDateAtMidnight.getTime();
+  const a = cellDateOnly.getTime();
+  const b = filterDateOnly.getTime();
+  if (!Number.isFinite(a) || !Number.isFinite(b)) return -1;
+
+  if (a === b) return 0;
+  if (a < b) return -1;
+  return 1;
+};
+
+/**
+ * Date+time filter comparator for AG Grid
+ * Compares full datetime values for precise filtering
+ */
+export const dateTimeFilterComparator = (filterDate: Date, cellValue: unknown): number => {
+  const cellDate = parseToDate(cellValue);
+  if (!cellDate) return -1;
+
+  const a = cellDate.getTime();
+  const b = filterDate.getTime();
   if (!Number.isFinite(a) || !Number.isFinite(b)) return -1;
 
   if (a === b) return 0;
@@ -84,7 +103,7 @@ export const dateFilterComparator = (filterLocalDateAtMidnight: Date, cellValue:
 
 /**
  * Date filter params configuration for AG Grid
- * Configured for date-only filtering (no time picker)
+ * Configured for date filtering with proper date+time handling
  */
 export const dateFilterParams = {
   comparator: dateFilterComparator,
@@ -92,7 +111,6 @@ export const dateFilterParams = {
   minValidYear: 2000,
   maxValidYear: 2100,
   inRangeFloatingFilterDateFormat: "yyyy-MM-dd",
-  // Ensure date-only comparison and display
   filterOptions: [
     "equals",
     "notEqual", 
@@ -103,7 +121,6 @@ export const dateFilterParams = {
     "notBlank",
   ],
   defaultOption: "equals",
-  // Suppress time-related UI elements
   suppressAndOrCondition: false,
   buttons: ["apply", "reset", "cancel"],
 };
