@@ -343,6 +343,13 @@ const Home = () => {
                 <div className="flex gap-2 sm:gap-[10px]">
                   {Array.from({ length: robotNumDepths }, (_, depthIdx) => (
                     <div key={`row1-depth${depthIdx}`} className="flex flex-col gap-2 sm:gap-[10px]">
+                      {/* Depth label at top of each column */}
+                      <div 
+                        className="text-[10px] font-medium text-center text-muted-foreground mb-1"
+                        style={{ minHeight: "14px" }}
+                      >
+                        Depth {depthIdx}
+                      </div>
                       {Array.from({ length: robotNumRacks }, (_, rackIdx) => (
                         <div
                           key={`row1-depth${depthIdx}-rack${rackIdx}`}
@@ -536,6 +543,13 @@ const Home = () => {
                 <div className="flex gap-2 sm:gap-[10px]">
                   {Array.from({ length: robotNumDepths }, (_, depthIdx) => (
                     <div key={`row0-depth${depthIdx}`} className="flex flex-col gap-2 sm:gap-[10px]">
+                      {/* Depth label at top of each column */}
+                      <div 
+                        className="text-[10px] font-medium text-center text-muted-foreground mb-1"
+                        style={{ minHeight: "14px" }}
+                      >
+                        Depth {depthIdx}
+                      </div>
                       {Array.from({ length: robotNumRacks }, (_, rackIdx) => (
                         <div
                           key={`row0-depth${depthIdx}-rack${rackIdx}`}
