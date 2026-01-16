@@ -540,7 +540,7 @@ const Home = () => {
                     }}
                   >
                     <img
-                      src={esLeft}
+                      src={esRight}
                       alt="shuttle"
                       className="relative z-10"
                       style={{
